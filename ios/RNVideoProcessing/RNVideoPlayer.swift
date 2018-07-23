@@ -34,7 +34,7 @@ class RNVideoPlayer: RCTView {
     var _replay: Bool = false
     var _rotate: Bool = false
     var isInitialized = false
-    var _resizeMode = AVLayerVideoGravityResizeAspect
+    var _resizeMode = AVLayerVideoGravity.resizeAspect
     var onChange: RCTBubblingEventBlock?
     
     let LOG_KEY: String = "VIDEO_PROCESSING"
@@ -68,7 +68,7 @@ class RNVideoPlayer: RCTView {
             if newValue == nil {
                 return
             }
-            self._resizeMode = newValue as! String
+            self._resizeMode = AVLayerVideoGravity(rawValue: newValue as! String)
             self.playerLayer?.videoGravity = self._resizeMode
             self.setNeedsLayout()
             print("CHANGED: resizeMode \(newValue)")
